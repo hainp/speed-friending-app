@@ -1,1 +1,89 @@
-<div class="row">Hello</div>
+<div class="row">
+    <ul class="small-block-grid-3 button-group radius">
+      <li><a href="#" class="button" ng-click="newData()">New</a></li>
+      <li><a href="#" class="button" ng-click="matchData()">Matching</a></li>
+      <li><a href="#" class="button" ng-click="exportData()">Export</a></li>
+    </ul>
+</div>
+
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <form>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="no" class="right inline">No.</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="no" ng-model="member.no" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="name" class="right inline">Name</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="name" ng-model="member.name" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="email" class="right inline">Email</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="email" ng-model="member.email" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="phone" class="right inline">Phone</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="phone" ng-model="member.phone" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="like" class="right inline">Like</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="like" ng-model="member.likes" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <label for="lurve" class="right inline">Lurve</label>
+      </div>
+      <div class="small-8 large-8 columns">
+        <input type="text" id="lurve" ng-model="member.lurves" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <a href="#" class="radius button expand" ng-click="add()">Add</a>
+  </div>
+</div>
+
+<div class="row">
+  <table width="100%">
+    <thead>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th class="show-for-medium-up">Phone</th>
+      <th class="show-for-large-up">Likes</th>
+      <th class="show-for-large-up">Lurve</th>
+      <th><i class="foundicon-settings"></i></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="member in members">
+        <td>{{member.no}}</td>
+        <td>{{member.name}}</td>
+        <td>{{member.email}}</td>
+        <td class="show-for-medium-up">{{member.phone}}</td>
+        <td class="show-for-large-up">{{member.likes}}</td>
+        <td class="show-for-large-up">{{member.lurves}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
