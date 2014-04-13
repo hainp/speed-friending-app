@@ -34,9 +34,27 @@ function HomeCtrl($scope) {
     };
 
     $scope.matchData = function() {
-        console.log('Match Function');
+        $scope.lovers = $scope.matchLovers();
     };
 
-    this.matchLovers = function() {
+    $scope.matchLovers = function() {
+        var matches = [],
+            members = $scope.members.slice(0);
+
+        members.forEach(function(aMember) {
+            aMember.lurves.forEach(function(memNo, i) {
+                var mem = members.filter(function(member) {
+                    return member.no === memNo;
+                })[0];
+
+                if (mem && mem.lurves.indexOf(aMember.no) >= 0) {
+                    // Lurve match
+                    matches.push([aMember, mem]);
+                    // Remove ref
+                    aMember.lurves.splice(i, 1);
+                }
+            });
+        });
+        return matches;
     };
 }
