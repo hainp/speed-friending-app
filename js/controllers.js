@@ -12,6 +12,7 @@ function HomeCtrl($scope) {
     $scope.members = [];
     $scope.member = {};
     $scope.lovers = [];
+    $scope.friends = [];
 
     $scope.add = function() {
         $scope.member.lurves = $scope.member.lurves.split(',').map(function(l) {
@@ -34,48 +35,30 @@ function HomeCtrl($scope) {
     };
 
     $scope.matchData = function() {
-        $scope.lovers = $scope.matchLovers();
+        $scope.lovers = match('lurves');
+        $scope.friends = match('likes');
     };
 
-    $scope.matchLovers = function() {
+    var match = function(type) {
         var matches = [],
             members = $scope.members.slice(0);
 
         members.forEach(function(aMember) {
-            aMember.lurves.forEach(function(memNo, i) {
-                var mem = members.filter(function(member) {
-                    return member.no === memNo;
-                })[0];
+            if (aMember[type]) {
+                aMember[type].forEach(function(memNo, i) {
+                    var mem = members.filter(function(member) {
+                        return member.no === memNo;
+                    })[0];
 
-                if (mem && mem.lurves.indexOf(aMember.no) >= 0) {
-                    // Lurve match
-                    matches.push([aMember, mem]);
-                    // Remove ref
-                    aMember.lurves.splice(i, 1);
-                }
-            });
+                    if (mem && mem[type].indexOf(aMember.no) >= 0) {
+                        // Lurve match
+                        matches.push([aMember, mem]);
+                        // Remove ref
+                        aMember[type].splice(i, 1);
+                    }
+                });
+            }
         });
-        return matches;
-    };
-
-    $scope.matchFriends = function() {
-        var matches = [],
-            members = $scope.members.slice(0);
-
-        members.forEach(function(aMember) {
-            aMember.likes.forEach(function(memNo, i) {
-                var mem = members.filter(function(member) {
-                    return member.no === memNo;
-                })[0];
-                if (mem && mem.likes.indexOf(aMember.no) >= 0) {
-                    // Freund match
-                    matches.push([aMember, mem]);
-                    // Remove ref
-                    aMember.likes.splice(i, 1);
-                }
-            });
-        });
-
         return matches;
     };
 }
