@@ -1,0 +1,9 @@
+/* line 2, ../scss/custom.scss */
+.small-block-grid-3 li {
+  width: 33.33%;
+  padding: 0;
+}
+/* line 5, ../scss/custom.scss */
+.small-block-grid-3 li .button {
+  width: 100%;
+}
