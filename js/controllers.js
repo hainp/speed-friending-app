@@ -15,12 +15,18 @@ function HomeCtrl($scope) {
     $scope.friends = [];
 
     $scope.add = function() {
-        $scope.member.lurves = $scope.member.lurves.split(',').map(function(l) {
-            return Number(l);
-        });
-        $scope.member.likes = $scope.member.likes.split(',').map(function(l) {
-            return Number(l);
-        });
+        $scope.member.lurves =
+            $scope.member.lurves ?
+            $scope.member.lurves.split(',').map(function(l) {
+                return Number(l);
+            }) : [];
+
+        $scope.member.likes =
+            $scope.member.likes ?
+            $scope.member.likes.split(',').map(function(l) {
+                return Number(l);
+            }) : [];
+
         $scope.members.push($scope.member);
         $scope.member = {};
     };
