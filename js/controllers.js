@@ -59,6 +59,23 @@ function HomeCtrl($scope) {
     };
 
     $scope.matchFriends = function() {
+        var matches = [],
+            members = $scope.members.slice(0);
 
+        members.forEach(function(aMember) {
+            aMember.likes.forEach(function(memNo, i) {
+                var mem = members.filter(function(member) {
+                    return member.no === memNo;
+                })[0];
+                if (mem && mem.likes.indexOf(aMember.no) >= 0) {
+                    // Freund match
+                    matches.push([aMember, mem]);
+                    // Remove ref
+                    aMember.likes.splice(i, 1);
+                }
+            });
+        });
+
+        return matches;
     };
 }
