@@ -57,4 +57,8 @@ function HomeCtrl($scope) {
         });
         return matches;
     };
+
+    $scope.matchFriends = function() {
+
+    };
 }
